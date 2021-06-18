@@ -1,11 +1,6 @@
 import user_interface
-from coins import Quarter
-from coins import Dime
-from coins import Nickel
-from coins import Penny
-from cans import Cola
-from cans import OrangeSoda
-from cans import RootBeer
+from dCC_Python_SodaMachine import coins, cans
+
 
 class SodaMachine:
     def __init__(self):
@@ -15,22 +10,22 @@ class SodaMachine:
     def fill_register(self):
         """Method will fill SodaMachine's register with certain amounts of each coin when called."""
         for index in range(8):
-            self.register.append(Quarter())
+            self.register.append(coins.Quarter())
         for index in range(10):
-            self.register.append(Dime())
+            self.register.append(coins.Dime())
         for index in range(20):
-            self.register.append(Nickel())
+            self.register.append(coins.Nickel())
         for index in range(50):
-            self.register.append(Penny())
+            self.register.append(coins.Penny())
 
     def fill_inventory(self):
         """Method will fill SodaMachine's cans list with certain amounts of each can when called."""
         for index in range(10):
-            self.inventory.append(Cola())
+            self.inventory.append(cans.Cola())
         for index in range(10):
-            self.inventory.append(OrangeSoda())
+            self.inventory.append(cans.OrangeSoda())
         for index in range(10):
-            self.inventory.append(RootBeer())
+            self.inventory.append(cans.RootBeer())
 
     def begin_transaction(self, customer):
         """Method is complete. Initiates purchase if user decides to proceed. No errors."""
@@ -109,7 +104,7 @@ class SodaMachine:
     def register_has_coin(self, coin_name):
         """Searches register for a type of coin, returns True if coin is found"""
         for coin in self.register:
-            if coin.name == "coin_name":
+            if coin == coin_name:
                 return True
         return False
 
@@ -119,6 +114,7 @@ class SodaMachine:
 
     def calculate_coin_value(self, coin_list):
         """Takes in a list of coins, returns the monetary value of list."""
+        total_value = 0
         for coin in coin_list:
             total_value += coin.value
         return round(total_value, 2)
@@ -131,7 +127,7 @@ class SodaMachine:
                 return can
         return None
 
-    def return_inventory(chosen_soda):
+    def return_inventory(self, chosen_soda):
         """Re-adds a remove can back to inventory upon unsuccessful purchase attempt"""
         self.inventory.append(chosen_soda)
 
