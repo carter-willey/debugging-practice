@@ -1,4 +1,11 @@
-
+import user_interface
+from coins import Quarter
+from coins import Dime
+from coins import Nickel
+from coins import Penny
+from cans import Cola
+from cans import OrangeSoda
+from cans import RootBeer
 
 class SodaMachine:
     def __init__(self):
@@ -8,22 +15,22 @@ class SodaMachine:
     def fill_register(self):
         """Method will fill SodaMachine's register with certain amounts of each coin when called."""
         for index in range(8):
-            self.register.append(coins.Quarter())
+            self.register.append(Quarter())
         for index in range(10):
-            self.register.append(coins.Dime())
+            self.register.append(Dime())
         for index in range(20):
-            self.register.append(coins.Nickel())
+            self.register.append(Nickel())
         for index in range(50):
-            self.register.append(coins.Penny())
+            self.register.append(Penny())
 
     def fill_inventory(self):
         """Method will fill SodaMachine's cans list with certain amounts of each can when called."""
         for index in range(10):
-            self.inventory.append(cans.Cola())
+            self.inventory.append(Cola())
         for index in range(10):
-            self.inventory.append(cans.OrangeSoda())
+            self.inventory.append(OrangeSoda())
         for index in range(10):
-            self.inventory.append(cans.RootBeer())
+            self.inventory.append(RootBeer())
 
     def begin_transaction(self, customer):
         """Method is complete. Initiates purchase if user decides to proceed. No errors."""
@@ -37,9 +44,9 @@ class SodaMachine:
 
         selected_soda = self.get_inventory_soda(selected_soda_name)
 
-        customer_payment = customer.gather_coins_from_wallet(selected_soda_name)
+        customer_payment = customer.gather_coins_from_wallet(selected_soda)
 
-        self.calculate_transaction(customer_payment, selected_soda_name, customer)
+        self.calculate_transaction(customer_payment, selected_soda, customer)
 
         user_interface.output_text("Transaction complete")
 
@@ -130,5 +137,5 @@ class SodaMachine:
 
     def deposit_coins_into_register(self, coin_list):
         """Takes in list of coins as argument, adds each coin from list to the register"""
-        for coin in coins_list:
-            self.register.append(coins_list)
+        for coin in coin_list:
+            self.register.append(coin_list)
